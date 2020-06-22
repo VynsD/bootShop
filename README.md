@@ -1,2 +1,0 @@
-# bootShop
-next.js assestment
