@@ -20,4 +20,115 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  /* Elements */
+  // Grid
+  .grid {
+    &-onlyElement {
+      @include expand-content(100%);
+      @include display-flex(row, center, space-evenly);
+
+      &--text {
+        color: #FFF;
+      }        
+    }
+    &-wrapper {
+      @include expand-content(100%);
+      @include display-grid(auto, repeat(3, 1fr), 5px);
+
+      @media screen and (max-width: 425px) {
+        grid-template-columns: 1fr ;
+        grid-template-rows: repeat(10, 1fr);
+      }
+    }
+  }
+
+  .img {
+    &_shrink {
+      @include expand-content(50px);
+    }
+  }
+
+  // Card
+  .card {
+    @include expand-content(100%, 400px); //200px, 230px);
+    @include display-grid(40% 15% 10% 5% 10%, 100%);
+
+    &-sprite {
+      @include expand-content(76px, 73px);
+      max-width: 100%;
+      border: 0;
+      font-size: .75rem;
+      color: #a3a3a3;
+
+      &-fixed {
+        display: inline-block;
+        max-width: none;
+        vertical-align: middle;
+      }
+    }
+    &-number {
+      @include self-center();
+    }
+    &-description {
+      @include display-grid(auto, 1fr, 5px);
+
+      &--classification {
+        grid-area: 1 / 1 / 2 / 2;
+      }
+      &--types {
+        grid-area: 2 / 1 / 3 / 2;
+        @include display-flex(row, center, space-evenly);
+      }
+    }
+  }
+
+  /* Header */
+  .header {
+    font-size: 18px;
+    &-wrapper {
+      @include expand-content(100%);
+      @include display-grid(100%, 1fr 3fr 1fr)
+    }
+    &_flex-center {
+      @include display-flex(row, center, center);
+    }
+  }
+
+  /* Footer */
+  .footer {
+    &-wrapper {
+      @include expand-content(100%);//, 72px);
+      @include display-grid(100%, repeat(4, 25%));
+      align-items: center;
+      justify-items: center;
+      align-self: flex-end;
+
+      @media screen and (max-width: 1440px) {
+       // grid-template-columns: 4.5fr repeat(3, 1fr) 4.5fr;
+      }
+      @media screen and (max-width: 1024px) {
+       // grid-template-columns: 4fr repeat(3, 1fr) 4fr;
+      }
+      @media screen and (max-width: 768px) {
+       // grid-template-columns: 3fr repeat(3, 1fr) 3fr;
+      }
+    }
+    &-empty {
+      content: " ";
+    }
+    &-icon {
+      grid-area: 1 / 3 / 2 / 4;
+      @include expand-content(100%);
+    }
+    &-text {
+      font-size: 22px;
+      font-weight: 600;
+      &_left {
+        grid-area: 1 / 2 / 2 / 3;
+      }
+      &_right {
+        grid-area: 1 / 4 / 2 / 5;
+      }
+    }
+  }
 }
