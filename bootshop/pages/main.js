@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Card from '../shared/components/card';
 
 class Main extends Component {
   constructor(props) {
@@ -9,15 +10,18 @@ class Main extends Component {
   }
 
   render() {
-
     return (
-      <div>
-        {console.log('edges after passing data ', this.state.products.edges)}
+      <div className="grid-wrapper">
         {
           this.state.products.edges.map((e, i) => {
             return (
-              <div key={e.node.id}>
-                <h3>{e.node.title}</h3>
+              <>
+                <Card
+                  id={e.node.id}  
+                  title={e.node.title}
+                  variants={e.node.variants.edges}
+                />
+                {/* 
                 <div>
                   { // TODO Understand use
                     e.node.options.map((e, i) => {
@@ -36,8 +40,8 @@ class Main extends Component {
                     )
                   } 
                 </div> 
-                <div>{console.log(e.node.variants)}</div> {/* TODO Understand use */}
-              </div>
+                */}
+              </>
             ) 
           })
         }
