@@ -66,7 +66,6 @@ const Index = () => {
   // Success Section
   return (
     <>
-      {console.log('before passing data: ', data)}
       <Header />
       <Main {...data}/> 
       <Footer />
