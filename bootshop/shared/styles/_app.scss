@@ -1,0 +1,23 @@
+/* Imports */
+@import './themes/mixins';
+
+//* Override
+#__next {
+  @include display-grid(15% 65% 20%, 100%, 15px)
+}
+//*/
+
+/* Generals */
+html, body {
+  @include expand-content(100%);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
