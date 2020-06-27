@@ -4,30 +4,85 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      btnText: "Add to Cart",
       id: props.id,
+      selectedOption: {},
+      selectedVariant: {},
       title: props.title,
       variants: props.variants
     }
   }
+  componentWillMount() {
+    this.state.variants ? (
+      this.setState({
+        ...this,
+        selectedVariant: this.state.variants[0].node
+      })
+    ) : () => { return new Error() }
+  };
+
+  updateSelectedVariant = () => {
+    const variants = this.state.variants;
+    const found = variants.filter(e => e.node.id.includes(this.state.selectedOption));
+    found ? ( 
+      this.setState({
+        ...this,
+        selectedVariant: found[0].node
+      })
+    ) : () => { throw new Error() };
+  }
+
+  handleSelect = (event) => {
+      this.setState({
+        ...this,
+        selectedOption: event.target.value
+      },
+      () => this.updateSelectedVariant(),
+    );
+  };
+
   render() {
+    const selectedOption = this.state.selectedOption;
+
     return (
-      <div key={this.state.id} className="">
-        <figure>
-          <img src="" alt="test" />
-          <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
+      <div 
+        key={this.state.id} 
+        className="card"
+      >
+        <figure className="card-product">
+          <img 
+            className="card-product_img"
+            src={this.state.selectedVariant.image.src} 
+            alt={this.state.title}
+          />
+          <figcaption className="card-product_caption">{this.state.title.toUpperCase()}</figcaption>
         </figure>
-        <h3>{this.state.title}</h3>
-        <select name="sizeColor" id="a">
-          <option key="b" value="test">test</option>
-          {/*<select name={e.name} id={e.id}>*/}
-            {/*
-              e.values.map((e, i) => {
-                return <option key={i} value={e}>{e}</option>
-              })
-            */}
+        <select 
+          id={this.state.selectedVariant.id + "select"}
+          name="sizeColor"
+          className="card-choices"
+          value={selectedOption}
+          onChange={this.handleSelect}
+        > {
+            this.state.variants.map((e, i) => {
+              return (
+                <option 
+                  key={i}
+                  className="card-choices_variants"
+                  value={e.node.id}
+                >
+                  {e.node.title}
+                </option>
+              ) 
+            })
+          }
         </select>
-        <h4>Price</h4>
-        <button>Add to Cart</button>
+        <h4 className="card-price">{"$ " + this.state.selectedVariant.price}</h4>
+        <button 
+          className="card-btn"
+        >
+          {this.state.btnText.toUpperCase()}
+        </button>
       </div>
     );
   }
