@@ -1,8 +1,14 @@
-// pages/index.js
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import withApollo from './apollo_wrapper';
 // import { getDataFromTree } from '@apollo/react-ssr';
+
+
+import Main from './main';
+import Header from '../shared/components/header';
+import Footer from '../shared/components/footer';
+import ErrorFetchData from '../shared/components/error';
+import LoadingData from '../shared/components/loading';
 
 //query productListQuery($first: Int, $first: Int) {
 const QUERY = gql`
@@ -44,17 +50,29 @@ const QUERY = gql`
 
 const Index = () => {
   //let { first, first } = props;
-  const { loading, error, data } = useQuery(QUERY,
-    /*{
+  const { loading, error, data } = useQuery(QUERY);
+  /*
+  const { loading, error, data } = useQuery(QUERY,;
+    {
       variables: { first, first },
-    }*/
-  );
+    }
+  );*/
   
-
-  if (loading || !data) {
-    return <h1>loading...</h1>;
-  }
-  return <div>{console.log(data)}</div>;
+  
+  // Loding Section
+  if(loading) return <LoadingData />;
+  // Error Section
+  if(error) return <ErrorFetchData />; 
+  // Success Section
+  return (
+    <>
+      <Header />
+      <Main {...data}/> 
+      <Footer />
+    </>
+  )
+  
+  // <div>{console.log(data)}</div>;
 };
 
 export default withApollo(Index);
