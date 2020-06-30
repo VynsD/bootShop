@@ -4,16 +4,16 @@ function Footer() {
   return (  
     <div className="footer-wrapper">
       <p>
-        <span>data 1</span>
+        <span className="footer_filler"></span>
       </p>
       <p>
-        <span>data 2</span>
+        <span className="footer_filler"></span>
       </p>
       <p>
-        <span>data 3</span>
+        <span className="footer_filler"></span>
       </p>
       <p>
-        <span>data 4</span>
+        <span className="footer_filler"></span>
       </p>
     </div>
   );
