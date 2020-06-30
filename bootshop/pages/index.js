@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/react-hooks';
 import withApollo from './apollo_wrapper';
 // import { getDataFromTree } from '@apollo/react-ssr';
 
-
 import Main from './main';
 import Header from '../shared/components/header';
 import Footer from '../shared/components/footer';
@@ -47,22 +46,25 @@ const QUERY = gql`
   }
 `;
 
-
 const Index = () => {
-  //let { first, first } = props;
   const { loading, error, data } = useQuery(QUERY);
-  /*
-  const { loading, error, data } = useQuery(QUERY,;
-    {
-      variables: { first, first },
-    }
-  );*/
-  
-  
+
   // Loding Section
-  if(loading) return <LoadingData />;
+  if(loading) return (
+    <>
+      <Header /> 
+      <LoadingData />;
+      <Footer />
+    </>
+  )
   // Error Section
-  if(error) return <ErrorFetchData />; 
+  if(error) return (  
+    <>
+      <Header /> 
+      <ErrorFetchData />; 
+      <Footer />
+    </>
+  )
   // Success Section
   return (
     <>
@@ -71,8 +73,6 @@ const Index = () => {
       <Footer />
     </>
   )
-  
-  // <div>{console.log(data)}</div>;
 };
 
 export default withApollo(Index);

@@ -77,7 +77,7 @@ class Card extends Component {
             })
           }
         </select>
-        <h4 className="card-price">{"$ " + this.state.selectedVariant.price}</h4>
+        <h4 className="card-price">{"$ " + this.state.selectedVariant.price.replace('.00', '')}</h4>
         <button 
           className="card-btn"
         >
