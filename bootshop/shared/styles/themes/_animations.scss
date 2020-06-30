@@ -1,0 +1,9 @@
+/* Imports */
+@import './mixins';
+
+/* Loader */
+@keyframes loadingspin {
+  100% {
+      transform: rotate(360deg)
+  }
+}

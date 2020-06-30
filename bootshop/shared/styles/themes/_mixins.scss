@@ -1,0 +1,46 @@
+/* Imports */
+@import './variables';
+
+/* Overrides */
+
+/* General */
+// Helpers
+@mixin expand-content($width, $height:null) {
+  @if $height != null {
+    width: $width;
+    height: $height;
+  }
+  @else {
+    width: $width;
+    height: $width;
+  }
+}
+@mixin self-center() {
+  align-self: center;
+  justify-self: center;
+}
+
+// Layout
+@mixin display-flex($direction: null, $align: null, $justify: null) {
+  display: flex;
+
+  @if $direction {
+    flex-direction: $direction; 
+  }
+  @if $align {
+    align-items: $align; 
+  }
+  @if $justify {
+    justify-content: $justify; 
+  }
+}
+
+@mixin display-grid($row-template, $column-template, $gap: null) {
+  display: grid;
+  grid-template-rows: #{$row-template};
+  grid-template-columns: #{$column-template};
+  
+  @if $gap {
+    grid-gap: $gap;
+  }
+}
